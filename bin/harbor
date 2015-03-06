@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+# encoding: UTF-8
+
+# Clever way of using the git version rather than gem installed - <3 Rails
+git = File.expand_path('../../.git', __FILE__)
+if File.exist?(git)
+  $LOAD_PATH.unshift(File.join([File.dirname(__FILE__), '..', 'lib']))
+end
+require 'harbor/cli'
+Harbor::CLI.start
