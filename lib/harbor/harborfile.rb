@@ -47,6 +47,7 @@ module Harbor
 
     def service_deployed?(service)
       @clients.collect(&:backends).flatten.select {|backend|
+        return false if service.revision.is_a?(String)
         backend['service'] == service.name && backend['revision'] == service.revision.sha
       }.length > 0
     end
